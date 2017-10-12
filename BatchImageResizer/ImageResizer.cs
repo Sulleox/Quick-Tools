@@ -58,7 +58,14 @@ namespace WindowsFormsApp1
                         graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
                         graphics.DrawImage(srcImage, new Rectangle(0, 0, (int)widthInput.Value, (int)heigthInput.Value));
-                        newImage.Save(ImageFolderBrowser.SelectedPath + @"\ResizedImages\" + Path.GetFileName(filesList[i]));
+                        if (overwriteToggle.Checked)
+                        {
+                            newImage.Save(Path.GetFileName(filesList[i]));
+                        }
+                        else
+                        {
+                            newImage.Save(ImageFolderBrowser.SelectedPath + @"\ResizedImages\" + Path.GetFileName(filesList[i]));
+                        }
                     }
                 }
             }
