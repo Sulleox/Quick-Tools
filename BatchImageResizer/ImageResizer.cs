@@ -24,13 +24,14 @@ namespace WindowsFormsApp1
         {
             if(ImageFolderBrowser.ShowDialog()==DialogResult.OK)
             {
+                pathBox.Text = ImageFolderBrowser.SelectedPath;
                 GetFilesInFolder();
             }
         }
 
         private void GetFilesInFolder()
         {
-           filesList = Directory.GetFiles(ImageFolderBrowser.SelectedPath);
+           filesList = Directory.GetFiles(pathBox.Text);
             for (int i = 0; i < filesList.Length; i++)
             {
                 for (int y = 0; y < allowedExts.Length; y++)
@@ -46,7 +47,7 @@ namespace WindowsFormsApp1
 
         private void ResizeImages()
         {
-            Directory.CreateDirectory(ImageFolderBrowser.SelectedPath + "\\ResizedImages");
+            Directory.CreateDirectory(pathBox.Text + "\\ResizedImages");
             for (int i = 0; i < imagesList.Count; i++)
             {
                 using (var srcImage = Image.FromFile(filesList[i]))
