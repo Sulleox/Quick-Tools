@@ -5,7 +5,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace WindowsFormsApp1
+namespace ImageResizer
 {
 
     public partial class ImageResizer : Form
@@ -50,25 +50,26 @@ namespace WindowsFormsApp1
             Directory.CreateDirectory(pathBox.Text + "\\ResizedImages");
             for (int i = 0; i < imagesList.Count; i++)
             {
-                using (var srcImage = Image.FromFile(filesList[i]))
+                var srcImage = Image.FromFile(filesList[i]);
+                using (var newImage = new Bitmap((int)widthInput.Value, (int) heigthInput.Value))
+                using (var graphics = Graphics.FromImage(newImage))
                 {
-                    using (var newImage = new Bitmap((int)widthInput.Value, (int) heigthInput.Value))
-                    using (var graphics = Graphics.FromImage(newImage))
+                    graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                    graphics.DrawImage(srcImage, new Rectangle(0, 0, (int)widthInput.Value, (int)heigthInput.Value));
+                    srcImage.Dispose();
+                    if (overwriteToggle.Checked)
                     {
-                        graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                        graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                        graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                        graphics.DrawImage(srcImage, new Rectangle(0, 0, (int)widthInput.Value, (int)heigthInput.Value));
-                        if (overwriteToggle.Checked)
-                        {
-                            newImage.Save(Path.GetFileName(filesList[i]));
-                        }
-                        else
-                        {
-                            newImage.Save(ImageFolderBrowser.SelectedPath + @"\ResizedImages\" + Path.GetFileName(filesList[i]));
-                        }
+                        System.IO.File.Delete(filesList[i]);
+                        newImage.Save(pathBox.Text + @"\" + Path.GetFileName(filesList[i]));
+                    }
+                    else
+                    {
+                        newImage.Save(pathBox.Text + @"\ResizedImages\" + Path.GetFileName(filesList[i]));
                     }
                 }
+                
             }
         }
     }
