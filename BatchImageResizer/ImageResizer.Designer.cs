@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageResizer));
             this.buttonBrowse = new System.Windows.Forms.Button();
             this.ImageFolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.widthInput = new System.Windows.Forms.NumericUpDown();
@@ -154,6 +155,7 @@
             this.Controls.Add(this.heigthInput);
             this.Controls.Add(this.widthInput);
             this.Controls.Add(this.buttonBrowse);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ImageResizer";
             this.Text = "Image Resizer";
             ((System.ComponentModel.ISupportInitialize)(this.widthInput)).EndInit();
