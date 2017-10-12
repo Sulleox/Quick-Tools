@@ -40,8 +40,10 @@
             this.buttonResize = new System.Windows.Forms.Button();
             this.widthCombo = new System.Windows.Forms.ComboBox();
             this.heightCombo = new System.Windows.Forms.ComboBox();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.widthInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heigthInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonBrowse
@@ -184,6 +186,11 @@
             this.heightCombo.Text = "16";
             this.heightCombo.SelectedIndexChanged += new System.EventHandler(this.heightCombo_SelectedIndexChanged);
             // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
             // ImageResizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +211,7 @@
             this.Text = "Image Resizer";
             ((System.ComponentModel.ISupportInitialize)(this.widthInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heigthInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,6 +230,7 @@
         private System.Windows.Forms.Button buttonResize;
         private System.Windows.Forms.ComboBox widthCombo;
         private System.Windows.Forms.ComboBox heightCombo;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }
 
