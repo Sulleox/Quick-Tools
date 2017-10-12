@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonBrowse = new System.Windows.Forms.Button();
             this.ImageFolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.widthInput = new System.Windows.Forms.NumericUpDown();
             this.heigthInput = new System.Windows.Forms.NumericUpDown();
@@ -36,23 +36,24 @@
             this.label2 = new System.Windows.Forms.Label();
             this.overwriteToggle = new System.Windows.Forms.CheckBox();
             this.pathBox = new System.Windows.Forms.TextBox();
+            this.buttonResize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.widthInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heigthInput)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonBrowse
             // 
-            this.button1.Location = new System.Drawing.Point(12, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Browse...";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonBrowse.Location = new System.Drawing.Point(12, 12);
+            this.buttonBrowse.Name = "buttonBrowse";
+            this.buttonBrowse.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowse.TabIndex = 0;
+            this.buttonBrowse.Text = "Browse...";
+            this.buttonBrowse.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Click += new System.EventHandler(this.button1_Click);
             // 
             // widthInput
             // 
-            this.widthInput.Location = new System.Drawing.Point(12, 105);
+            this.widthInput.Location = new System.Drawing.Point(12, 96);
             this.widthInput.Maximum = new decimal(new int[] {
             4096,
             0,
@@ -74,7 +75,7 @@
             // 
             // heigthInput
             // 
-            this.heigthInput.Location = new System.Drawing.Point(152, 105);
+            this.heigthInput.Location = new System.Drawing.Point(152, 96);
             this.heigthInput.Maximum = new decimal(new int[] {
             4096,
             0,
@@ -97,7 +98,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 89);
+            this.label1.Location = new System.Drawing.Point(12, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 3;
@@ -106,7 +107,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(152, 89);
+            this.label2.Location = new System.Drawing.Point(152, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 4;
@@ -115,7 +116,7 @@
             // overwriteToggle
             // 
             this.overwriteToggle.AutoSize = true;
-            this.overwriteToggle.Location = new System.Drawing.Point(11, 147);
+            this.overwriteToggle.Location = new System.Drawing.Point(12, 134);
             this.overwriteToggle.Name = "overwriteToggle";
             this.overwriteToggle.Size = new System.Drawing.Size(108, 17);
             this.overwriteToggle.TabIndex = 5;
@@ -130,18 +131,29 @@
             this.pathBox.Size = new System.Drawing.Size(257, 20);
             this.pathBox.TabIndex = 6;
             // 
+            // buttonResize
+            // 
+            this.buttonResize.Location = new System.Drawing.Point(197, 128);
+            this.buttonResize.Name = "buttonResize";
+            this.buttonResize.Size = new System.Drawing.Size(75, 23);
+            this.buttonResize.TabIndex = 7;
+            this.buttonResize.Text = "Resize";
+            this.buttonResize.UseVisualStyleBackColor = true;
+            this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
+            // 
             // ImageResizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 221);
+            this.ClientSize = new System.Drawing.Size(284, 163);
+            this.Controls.Add(this.buttonResize);
             this.Controls.Add(this.pathBox);
             this.Controls.Add(this.overwriteToggle);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.heigthInput);
             this.Controls.Add(this.widthInput);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonBrowse);
             this.Name = "ImageResizer";
             this.Text = "Image Resizer";
             ((System.ComponentModel.ISupportInitialize)(this.widthInput)).EndInit();
@@ -153,7 +165,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonBrowse;
         private System.Windows.Forms.FolderBrowserDialog ImageFolderBrowser;
         private System.Windows.Forms.NumericUpDown widthInput;
         private System.Windows.Forms.NumericUpDown heigthInput;
@@ -161,6 +173,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox overwriteToggle;
         private System.Windows.Forms.TextBox pathBox;
+        private System.Windows.Forms.Button buttonResize;
     }
 }
 

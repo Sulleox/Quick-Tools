@@ -42,6 +42,10 @@ namespace ImageResizer
                     }
                 }
             }
+        }
+
+        private void buttonResize_Click(object sender, EventArgs e)
+        {
             ResizeImages();
         }
 
@@ -69,7 +73,6 @@ namespace ImageResizer
                         newImage.Save(pathBox.Text + @"\ResizedImages\" + Path.GetFileName(filesList[i]));
                     }
                 }
-                
             }
         }
     }
