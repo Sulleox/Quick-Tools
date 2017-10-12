@@ -117,7 +117,7 @@
             // overwriteToggle
             // 
             this.overwriteToggle.AutoSize = true;
-            this.overwriteToggle.Location = new System.Drawing.Point(12, 134);
+            this.overwriteToggle.Location = new System.Drawing.Point(12, 137);
             this.overwriteToggle.Name = "overwriteToggle";
             this.overwriteToggle.Size = new System.Drawing.Size(108, 17);
             this.overwriteToggle.TabIndex = 5;
@@ -134,7 +134,7 @@
             // 
             // buttonResize
             // 
-            this.buttonResize.Location = new System.Drawing.Point(197, 128);
+            this.buttonResize.Location = new System.Drawing.Point(204, 134);
             this.buttonResize.Name = "buttonResize";
             this.buttonResize.Size = new System.Drawing.Size(75, 23);
             this.buttonResize.TabIndex = 7;
