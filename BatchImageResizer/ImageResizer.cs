@@ -49,6 +49,16 @@ namespace ImageResizer
             ResizeImages();
         }
 
+        private void widthCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            widthInput.Value = int.Parse(widthCombo.Text);
+        }
+
+        private void heightCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            heigthInput.Value = int.Parse(heightCombo.Text);
+        }
+
         private void ResizeImages()
         {
             Directory.CreateDirectory(pathBox.Text + "\\ResizedImages");
