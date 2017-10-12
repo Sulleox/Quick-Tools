@@ -65,7 +65,7 @@
             0,
             0});
             this.widthInput.Name = "widthInput";
-            this.widthInput.Size = new System.Drawing.Size(120, 20);
+            this.widthInput.Size = new System.Drawing.Size(53, 20);
             this.widthInput.TabIndex = 1;
             this.widthInput.Value = new decimal(new int[] {
             16,
@@ -75,7 +75,7 @@
             // 
             // heigthInput
             // 
-            this.heigthInput.Location = new System.Drawing.Point(152, 96);
+            this.heigthInput.Location = new System.Drawing.Point(71, 96);
             this.heigthInput.Maximum = new decimal(new int[] {
             4096,
             0,
@@ -87,7 +87,7 @@
             0,
             0});
             this.heigthInput.Name = "heigthInput";
-            this.heigthInput.Size = new System.Drawing.Size(120, 20);
+            this.heigthInput.Size = new System.Drawing.Size(49, 20);
             this.heigthInput.TabIndex = 2;
             this.heigthInput.Value = new decimal(new int[] {
             16,
@@ -107,7 +107,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(152, 80);
+            this.label2.Location = new System.Drawing.Point(71, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 4;
@@ -128,12 +128,12 @@
             this.pathBox.Location = new System.Drawing.Point(15, 51);
             this.pathBox.Multiline = true;
             this.pathBox.Name = "pathBox";
-            this.pathBox.Size = new System.Drawing.Size(257, 20);
+            this.pathBox.Size = new System.Drawing.Size(199, 20);
             this.pathBox.TabIndex = 6;
             // 
             // buttonResize
             // 
-            this.buttonResize.Location = new System.Drawing.Point(204, 134);
+            this.buttonResize.Location = new System.Drawing.Point(139, 137);
             this.buttonResize.Name = "buttonResize";
             this.buttonResize.Size = new System.Drawing.Size(75, 23);
             this.buttonResize.TabIndex = 7;
