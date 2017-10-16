@@ -20,16 +20,20 @@ namespace SpritesheetMaker
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BrowsingButton_Click(object sender, EventArgs e)
         {
-            Image[] sprites = GetFilesInFolder();
-            Size spriteSize = GetSpriteSize(sprites);
-            PackSpriteSheet ( sprites, spriteSize, GetSpritesheetSize(sprites, spriteSize) );
+            if (SpritesFolderBrowser.ShowDialog() == DialogResult.OK)
+            {
+                spritepathBox.Text = SpritesFolderBrowser.SelectedPath;
+                Image[] sprites = GetFilesInFolder();
+                Size spriteSize = GetSpriteSize(sprites);
+                PackSpriteSheet(sprites, spriteSize, GetSpritesheetSize(sprites, spriteSize));
+            }
         }
 
         private Image[] GetFilesInFolder()
         {
-            string[] filesList = Directory.GetFiles(@"C:\Sprites");
+            string[] filesList = Directory.GetFiles(spritepathBox.Text);
             List<Image> sprites = new List<Image>();
 
             for (int i = 0; i < filesList.Length; i++)
@@ -96,7 +100,39 @@ namespace SpritesheetMaker
                     }
                 }
             }
-            newBitmap.Save(@"C:\TestSpriteSheet.png");
+            switch (extensionBox.SelectedIndex)
+            {
+                case 0:
+                    if (File.Exists(spritepathBox.Text + @"\" + nameBox.Text + ".png"))
+                    {
+                        File.Delete(spritepathBox.Text + @"\" + nameBox.Text + ".png");
+                    }
+                    else
+                    {
+                        newBitmap.Save(spritepathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                    break;
+                case 1:
+                    if (File.Exists(spritepathBox.Text + @"\" + nameBox.Text + ".bmp"))
+                    {
+                        File.Delete(spritepathBox.Text + @"\" + nameBox.Text + ".bmp");
+                    }
+                    else
+                    {
+                        newBitmap.Save(spritepathBox.Text + @"\" + nameBox.Text + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
+                    }
+                    break;
+                default:
+                    if (File.Exists(spritepathBox.Text + @"\" + nameBox.Text + ".png"))
+                    {
+                        File.Delete(spritepathBox.Text + @"\" + nameBox.Text + ".png");
+                    }
+                    else
+                    {
+                        newBitmap.Save(spritepathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                    break;
+            }
             spriteSheet.Dispose();
             newBitmap.Dispose();
         }
