@@ -25,6 +25,21 @@ namespace SpritesheetMaker
             if (SpritesFolderBrowser.ShowDialog() == DialogResult.OK)
             {
                 spritepathBox.Text = SpritesFolderBrowser.SelectedPath;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (outpoutFolderDialog.ShowDialog() == DialogResult.OK)
+            {
+                outpoutPathBox.Text = outpoutFolderDialog.SelectedPath;
+            }
+        }
+
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            if (spritepathBox.Text != string.Empty && outpoutPathBox.Text != string.Empty)
+            {
                 Image[] sprites = GetFilesInFolder();
                 Size spriteSize = GetSpriteSize(sprites);
                 PackSpriteSheet(sprites, spriteSize, GetSpritesheetSize(sprites, spriteSize));
@@ -80,6 +95,10 @@ namespace SpritesheetMaker
 
         private void PackSpriteSheet(Image[] graphics, Size spriteSize, int SpriteSheetSize)
         {
+            if (overwriteBox.Checked && File.Exists(outpoutPathBox.Text + @"\" + nameBox.Text + "." + extensionBox.Text))
+            {
+                System.IO.File.Delete(outpoutPathBox.Text + @"\" + nameBox.Text + "." + extensionBox.Text);
+            }
             Bitmap newBitmap = new Bitmap(SpriteSheetSize, SpriteSheetSize);
             Graphics spriteSheet = Graphics.FromImage(newBitmap);
             int currentSprite = 0;
@@ -103,38 +122,53 @@ namespace SpritesheetMaker
             switch (extensionBox.SelectedIndex)
             {
                 case 0:
-                    if (File.Exists(spritepathBox.Text + @"\" + nameBox.Text + ".png"))
                     {
-                        File.Delete(spritepathBox.Text + @"\" + nameBox.Text + ".png");
+                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                        break;
                     }
-                    else
-                    {
-                        newBitmap.Save(spritepathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
-                    }
-                    break;
                 case 1:
-                    if (File.Exists(spritepathBox.Text + @"\" + nameBox.Text + ".bmp"))
                     {
-                        File.Delete(spritepathBox.Text + @"\" + nameBox.Text + ".bmp");
+                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
                     }
-                    else
+                case 2:
                     {
-                        newBitmap.Save(spritepathBox.Text + @"\" + nameBox.Text + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
+                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                     }
                     break;
                 default:
-                    if (File.Exists(spritepathBox.Text + @"\" + nameBox.Text + ".png"))
                     {
-                        File.Delete(spritepathBox.Text + @"\" + nameBox.Text + ".png");
-                    }
-                    else
-                    {
-                        newBitmap.Save(spritepathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
                     }
                     break;
             }
             spriteSheet.Dispose();
             newBitmap.Dispose();
+        }
+
+        private void SpritesheetMaker_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void extensionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nameBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void spritepathBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

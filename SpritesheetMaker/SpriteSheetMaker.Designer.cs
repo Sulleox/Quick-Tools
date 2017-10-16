@@ -28,16 +28,24 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SpritesheetMaker));
             this.BrowsingButton = new System.Windows.Forms.Button();
             this.SpritesFolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.spritepathBox = new System.Windows.Forms.TextBox();
             this.extensionBox = new System.Windows.Forms.ComboBox();
             this.nameBox = new System.Windows.Forms.TextBox();
+            this.overwriteBox = new System.Windows.Forms.CheckBox();
+            this.outpoutPathBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.outpoutFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.createButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BrowsingButton
             // 
-            this.BrowsingButton.Location = new System.Drawing.Point(12, 12);
+            this.BrowsingButton.Location = new System.Drawing.Point(138, 15);
             this.BrowsingButton.Name = "BrowsingButton";
             this.BrowsingButton.Size = new System.Drawing.Size(75, 23);
             this.BrowsingButton.TabIndex = 0;
@@ -47,39 +55,109 @@
             // 
             // spritepathBox
             // 
-            this.spritepathBox.Location = new System.Drawing.Point(12, 53);
+            this.spritepathBox.Location = new System.Drawing.Point(12, 44);
             this.spritepathBox.Name = "spritepathBox";
             this.spritepathBox.Size = new System.Drawing.Size(201, 20);
             this.spritepathBox.TabIndex = 1;
+            this.spritepathBox.TextChanged += new System.EventHandler(this.spritepathBox_TextChanged);
             // 
             // extensionBox
             // 
             this.extensionBox.FormattingEnabled = true;
             this.extensionBox.Items.AddRange(new object[] {
             "png",
-            "bmp"});
-            this.extensionBox.Location = new System.Drawing.Point(153, 79);
+            "bmp",
+            "jpg"});
+            this.extensionBox.Location = new System.Drawing.Point(153, 70);
             this.extensionBox.Name = "extensionBox";
             this.extensionBox.Size = new System.Drawing.Size(60, 21);
             this.extensionBox.TabIndex = 2;
             this.extensionBox.Text = "png";
+            this.extensionBox.SelectedIndexChanged += new System.EventHandler(this.extensionBox_SelectedIndexChanged);
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(12, 79);
+            this.nameBox.Location = new System.Drawing.Point(12, 70);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(135, 20);
             this.nameBox.TabIndex = 3;
             this.nameBox.Text = "SpriteSheetName";
+            this.nameBox.TextChanged += new System.EventHandler(this.nameBox_TextChanged);
+            // 
+            // overwriteBox
+            // 
+            this.overwriteBox.AutoSize = true;
+            this.overwriteBox.Location = new System.Drawing.Point(12, 171);
+            this.overwriteBox.Name = "overwriteBox";
+            this.overwriteBox.Size = new System.Drawing.Size(71, 17);
+            this.overwriteBox.TabIndex = 4;
+            this.overwriteBox.Text = "Overwrite";
+            this.overwriteBox.UseVisualStyleBackColor = true;
+            // 
+            // outpoutPathBox
+            // 
+            this.outpoutPathBox.Location = new System.Drawing.Point(12, 145);
+            this.outpoutPathBox.Name = "outpoutPathBox";
+            this.outpoutPathBox.Size = new System.Drawing.Size(201, 20);
+            this.outpoutPathBox.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(138, 116);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Browse";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // createButton
+            // 
+            this.createButton.Location = new System.Drawing.Point(138, 191);
+            this.createButton.Name = "createButton";
+            this.createButton.Size = new System.Drawing.Size(75, 23);
+            this.createButton.TabIndex = 7;
+            this.createButton.Text = "Create !";
+            this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Select Sprites Folder";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 121);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Select Outpout Folder";
             // 
             // SpritesheetMaker
             // 
-            this.ClientSize = new System.Drawing.Size(292, 262);
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ClientSize = new System.Drawing.Size(223, 226);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.createButton);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.outpoutPathBox);
+            this.Controls.Add(this.overwriteBox);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.extensionBox);
             this.Controls.Add(this.spritepathBox);
             this.Controls.Add(this.BrowsingButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SpritesheetMaker";
+            this.Text = "SpriteSheet Maker";
+            this.Load += new System.EventHandler(this.SpritesheetMaker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,6 +173,13 @@
         private System.Windows.Forms.TextBox spritepathBox;
         private System.Windows.Forms.ComboBox extensionBox;
         private System.Windows.Forms.TextBox nameBox;
+        private System.Windows.Forms.CheckBox overwriteBox;
+        private System.Windows.Forms.TextBox outpoutPathBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.FolderBrowserDialog outpoutFolderDialog;
+        private System.Windows.Forms.Button createButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
