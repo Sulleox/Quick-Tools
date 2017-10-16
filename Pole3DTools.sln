@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchImageResizer", "BatchI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpritesheetMaker", "SpritesheetMaker\SpritesheetMaker.csproj", "{D4EC92AD-D615-471D-BC5B-05F4788D8090}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MipMapMaker", "MipMapMaker\MipMapMaker.csproj", "{820E1D45-C5AC-4B7B-A007-E097E5DDC880}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D4EC92AD-D615-471D-BC5B-05F4788D8090}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4EC92AD-D615-471D-BC5B-05F4788D8090}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4EC92AD-D615-471D-BC5B-05F4788D8090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820E1D45-C5AC-4B7B-A007-E097E5DDC880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820E1D45-C5AC-4B7B-A007-E097E5DDC880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820E1D45-C5AC-4B7B-A007-E097E5DDC880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820E1D45-C5AC-4B7B-A007-E097E5DDC880}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
