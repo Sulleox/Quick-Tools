@@ -20,16 +20,35 @@ namespace SpritesheetMaker
             InitializeComponent();
         }
 
+        private void BrowsingButton_Click(object sender, EventArgs e)
+        {
+            if (SpritesFolderBrowser.ShowDialog() == DialogResult.OK)
+            {
+                spritepathBox.Text = SpritesFolderBrowser.SelectedPath;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            Image[] sprites = GetFilesInFolder();
-            Size spriteSize = GetSpriteSize(sprites);
-            PackSpriteSheet ( sprites, spriteSize, GetSpritesheetSize(sprites, spriteSize) );
+            if (outpoutFolderDialog.ShowDialog() == DialogResult.OK)
+            {
+                outpoutPathBox.Text = outpoutFolderDialog.SelectedPath;
+            }
+        }
+
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            if (spritepathBox.Text != string.Empty && outpoutPathBox.Text != string.Empty)
+            {
+                Image[] sprites = GetFilesInFolder();
+                Size spriteSize = GetSpriteSize(sprites);
+                PackSpriteSheet(sprites, spriteSize, GetSpritesheetSize(sprites, spriteSize));
+            }
         }
 
         private Image[] GetFilesInFolder()
         {
-            string[] filesList = Directory.GetFiles(@"C:\Sprites");
+            string[] filesList = Directory.GetFiles(spritepathBox.Text);
             List<Image> sprites = new List<Image>();
 
             for (int i = 0; i < filesList.Length; i++)
@@ -76,6 +95,10 @@ namespace SpritesheetMaker
 
         private void PackSpriteSheet(Image[] graphics, Size spriteSize, int SpriteSheetSize)
         {
+            if (overwriteBox.Checked && File.Exists(outpoutPathBox.Text + @"\" + nameBox.Text + "." + extensionBox.Text))
+            {
+                System.IO.File.Delete(outpoutPathBox.Text + @"\" + nameBox.Text + "." + extensionBox.Text);
+            }
             Bitmap newBitmap = new Bitmap(SpriteSheetSize, SpriteSheetSize);
             Graphics spriteSheet = Graphics.FromImage(newBitmap);
             int currentSprite = 0;
@@ -96,9 +119,56 @@ namespace SpritesheetMaker
                     }
                 }
             }
-            newBitmap.Save(@"C:\TestSpriteSheet.png");
+            switch (extensionBox.SelectedIndex)
+            {
+                case 0:
+                    {
+                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                        break;
+                    }
+                case 1:
+                    {
+                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+                    }
+                case 2:
+                    {
+                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
+                    break;
+                default:
+                    {
+                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                    break;
+            }
             spriteSheet.Dispose();
             newBitmap.Dispose();
+        }
+
+        private void SpritesheetMaker_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void extensionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nameBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void spritepathBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
