@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 using CSharpImageLibrary;
 using System.IO;
+using System.Drawing.Imaging;
 
 namespace MipMapMaker
 {
@@ -73,12 +75,20 @@ namespace MipMapMaker
 			for ( int i = 1 ; i < paths.Count ; i++ )
 			{
 				ImageEngineImage mipImage = new ImageEngineImage( paths[i] );
-				MipMap mip = new MipMap( mipImage.OriginalData, mipImage.Width, mipImage.Height, mipImage.FormatDetails );
+				ImageFormats.ImageEngineFormatDetails mipFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.BMP );
+
+				var mipData = mipImage.Save( mipFormat, MipHandling.KeepTopOnly );
+
+				using ( var ff = File.Create( @"C:\Users\lvalet\Desktop\Tools Test\MipMap Generator\" + i + ".bmp" ) )
+				{
+					ff.Write( mipData, 0, mipData.Length );
+				}
+
+				MipMap mip = new MipMap( mipData, mipImage.Width, mipImage.Height, mipFormat );
 				outputImage.MipMaps.Add( mip );
 			}
 
-			ImageFormats.ImageEngineFormatDetails outputFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.DDS_DXT5 );
-
+			ImageFormats.ImageEngineFormatDetails outputFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.DDS_DXT3 );
 			byte[] data = outputImage.Save( outputFormat, MipHandling.Default, mipToSave: paths.Count );
 
 			using ( var file = File.Create( outputPath ) )
