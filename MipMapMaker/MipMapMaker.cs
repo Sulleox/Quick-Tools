@@ -34,7 +34,10 @@ namespace MipMapMaker
         {
             string[] filesList = Directory.GetFiles(pathBox.Text);
             List<Image[]> mipmaps = new List<Image[]>();
+            for (int i = 0; i < filesList.Length; i++)
+            {
 
+            } 
             return mipmaps;
         }
     }
