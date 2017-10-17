@@ -21,23 +21,20 @@ namespace MipMapMaker
 			InitializeComponent();
 		}
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                pathBox.Text = folderBrowserDialog.SelectedPath;
-                GetFilesInFolder();
-            }
-        }
+		private void button1_Click( object sender, EventArgs e )
+		{
+			if ( folderBrowserDialog.ShowDialog() == DialogResult.OK )
+			{
+				pathBox.Text = folderBrowserDialog.SelectedPath;
+				GetFilesInFolder();
+			}
+		}
 
-        private List<Image[]> GetFilesInFolder()
+        private void GetFilesInFolder()
         {
             string[] filesList = Directory.GetFiles(pathBox.Text);
             List<Image[]> mipmaps = new List<Image[]>();
-            for (int i = 0; i < filesList.Length; i++)
-            {
 
-            } 
             return mipmaps;
         }
     }
