@@ -15,9 +15,9 @@ namespace MipMapMaker
 	public partial class MipMapMaker : Form
 	{
 
-        private readonly string[] allowedExts = { ".png", ".jpg", ".tga" };
+		private readonly string[] allowedExts = { ".png", ".jpg", ".tga" };
 
-        public MipMapMaker()
+		public MipMapMaker()
 		{
 			InitializeComponent();
 		}
@@ -31,12 +31,9 @@ namespace MipMapMaker
 			}
 		}
 
-        private List<Image[]> GetFilesInFolder()
+        private void GetFilesInFolder()
         {
-            string[] filesList = Directory.GetFiles(pathBox.Text);
-            List<Image[]> mipmaps = new List<Image[]>();
-
-            return mipmaps;
+            
         }
     }
 }
