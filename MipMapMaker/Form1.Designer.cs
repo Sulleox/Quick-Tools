@@ -1,6 +1,6 @@
 ﻿namespace MipMapMaker
 {
-	partial class MipMapMaker
+	partial class MipMapMakerForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -50,14 +50,14 @@
             this.pathBox.Size = new System.Drawing.Size(259, 20);
             this.pathBox.TabIndex = 1;
             // 
-            // MipMapMaker
+            // MipMapMakerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.pathBox);
             this.Controls.Add(this.browseButton);
-            this.Name = "MipMapMaker";
+            this.Name = "MipMapMakerForm";
             this.Text = "MipMap Maker";
             this.ResumeLayout(false);
             this.PerformLayout();

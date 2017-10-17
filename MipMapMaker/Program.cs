@@ -16,7 +16,7 @@ namespace MipMapMaker
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault( false );
-			Application.Run( new MipMapMaker() );
+			Application.Run( new MipMapMakerForm() );
 		}
 	}
 }

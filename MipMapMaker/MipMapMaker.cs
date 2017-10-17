@@ -12,12 +12,12 @@ using CSharpImageLibrary;
 
 namespace MipMapMaker
 {
-	public partial class MipMapMaker : Form
+	public partial class MipMapMakerForm : Form
 	{
 
 		private readonly string[] allowedExts = { ".png", ".jpg", ".tga" };
 
-		public MipMapMaker()
+		public MipMapMakerForm()
 		{
 			InitializeComponent();
 		}
