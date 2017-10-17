@@ -199,5 +199,10 @@ namespace SpritesheetMaker
             spriteSheet.Dispose();
             newBitmap.Dispose();
         }
+
+        private void oneFolderCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            nameBox.Enabled = !oneFolderCheck.Checked;
+        }
     }
 }

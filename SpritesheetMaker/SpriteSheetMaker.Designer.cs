@@ -146,6 +146,7 @@
             this.oneFolderCheck.TabIndex = 10;
             this.oneFolderCheck.Text = "One Folder";
             this.oneFolderCheck.UseVisualStyleBackColor = true;
+            this.oneFolderCheck.CheckedChanged += new System.EventHandler(this.oneFolderCheck_CheckedChanged);
             // 
             // SpritesheetMaker
             // 
