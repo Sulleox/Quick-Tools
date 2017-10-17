@@ -47,7 +47,7 @@ namespace MipMapMaker
                     }
                     else
                     {
-
+                        
                         mipmap.Clear();
                         mipmap.Add(fileNames[i]);
                     }
