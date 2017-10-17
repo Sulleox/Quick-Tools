@@ -33,8 +33,6 @@ namespace MipMapMaker
 			}
 		}
 
-		//Nomenclature des fichiers : NomDuFichier_Mip0
-
 		private void GetFilesInFolder()
 		{
 			string[] fileNames = Directory.GetFiles( pathBox.Text );
@@ -63,7 +61,7 @@ namespace MipMapMaker
 
 			for ( int i = 0 ; i < output.Count ; i++ )
 			{
-				string outputPath = output[currentSubList][0].Substring( 0, output[currentSubList][0].LastIndexOf( '_' ) ) + ".dds";
+				string outputPath = output[i][0].Substring( 0, output[i][0].LastIndexOf( '_' ) ) + ".dds";
 				SaveDDS( output[i], outputPath );
 			}
 		}
@@ -77,18 +75,26 @@ namespace MipMapMaker
 				ImageEngineImage mipImage = new ImageEngineImage( paths[i] );
 				ImageFormats.ImageEngineFormatDetails mipFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.BMP );
 
-				var mipData = mipImage.Save( mipFormat, MipHandling.KeepTopOnly );
+				int ByteCount = mipImage.BitCount / 8;
+				byte[] rawData = mipImage.Save( mipFormat, MipHandling.KeepTopOnly );
+				byte[] finalData = new byte[mipImage.Height * mipImage.Width * ByteCount];
+				int offset = rawData.Length - finalData.Length;
 
-				using ( var ff = File.Create( @"C:\Users\lvalet\Desktop\Tools Test\MipMap Generator\" + i + ".bmp" ) )
-				{
-					ff.Write( mipData, 0, mipData.Length );
-				}
+				for ( int pixY = 0 ; pixY < mipImage.Height ; pixY++ )
+					for ( int pixX = 0 ; pixX < mipImage.Width ; pixX++ )
+						for ( int channel = 0 ; channel < ByteCount ; channel++ )
+						{
+							int outputIndex = ( ( mipImage.Height - pixY - 1 ) * mipImage.Width * ByteCount ) + ( pixX * ByteCount ) + channel;
+							int inputIndex = ( pixY * mipImage.Width * ByteCount ) + ( pixX * ByteCount ) + channel + offset;
 
-				MipMap mip = new MipMap( mipData, mipImage.Width, mipImage.Height, mipFormat );
+							finalData[outputIndex] = rawData[inputIndex];
+						}
+
+				MipMap mip = new MipMap( finalData, mipImage.Width, mipImage.Height, mipFormat );
 				outputImage.MipMaps.Add( mip );
 			}
 
-			ImageFormats.ImageEngineFormatDetails outputFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.DDS_DXT3 );
+			ImageFormats.ImageEngineFormatDetails outputFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.DDS_DXT1 );
 			byte[] data = outputImage.Save( outputFormat, MipHandling.Default, mipToSave: paths.Count );
 
 			using ( var file = File.Create( outputPath ) )
