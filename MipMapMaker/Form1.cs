@@ -35,7 +35,7 @@ namespace MipMapMaker
 
 		private void GetFilesInFolder()
 		{
-			string[] fileNames = Directory.GetFiles(pathBox.Text);
+			string[] fileNames = Directory.GetFiles( pathBox.Text );
 
 			List<List<string>> output = new List<List<string>>();
 			int currentSubList = 0;
@@ -44,8 +44,8 @@ namespace MipMapMaker
 
 			for ( int i = 1 ; i < fileNames.Length ; i++ )
 			{
-				string original = output[currentSubList][0].Substring( 0, output[currentSubList][0].LastIndexOf( '_' ));
-				string input = fileNames[i].Substring( 0, fileNames[i].LastIndexOf( '_' ));
+				string original = output[currentSubList][0].Substring( 0, output[currentSubList][0].LastIndexOf( '_' ) );
+				string input = fileNames[i].Substring( 0, fileNames[i].LastIndexOf( '_' ) );
 
 				if ( original == input )
 				{
@@ -54,36 +54,34 @@ namespace MipMapMaker
 				else
 				{
 					currentSubList++;
-                    output.Add(new List<string>());
-                    output[currentSubList].Add( fileNames[i] );
+					output.Add( new List<string>() );
+					output[currentSubList].Add( fileNames[i] );
 				}
 			}
 
-            for (int i = 0; i < output.Count; i++)
-            {
-                string outputPath = output[currentSubList][0].Substring(0, output[currentSubList][0].LastIndexOf('_')) + ".dds";
-                SaveDDS(output[i], outputPath);
-            }
+			for ( int i = 0 ; i < output.Count ; i++ )
+			{
+				string outputPath = output[currentSubList][0].Substring( 0, output[currentSubList][0].LastIndexOf( '_' ) ) + ".dds";
+				SaveDDS( output[i], outputPath );
+			}
 		}
 
 		private void SaveDDS( List<string> paths, string outputPath )
 		{
-            Bitmap bitmap = new Bitmap(16, 16);
-            bitmap.Save(outputPath);
-            bitmap.Dispose();
-            
+			Bitmap bitmap = new Bitmap( 2048, 1024 );
+			bitmap.Save( outputPath );
+			bitmap.Dispose();
 
-			ImageEngineImage outputImage = new ImageEngineImage(outputPath);
+			ImageEngineImage outputImage = new ImageEngineImage( outputPath );
 
 			for ( int i = 0 ; i < paths.Count ; i++ )
 			{
 				ImageEngineImage mipImage = new ImageEngineImage( paths[i] );
 				MipMap mip = new MipMap( mipImage.OriginalData, mipImage.Width, mipImage.Height, mipImage.FormatDetails );
-                outputImage.MipMaps.Add(mip);
+				outputImage.MipMaps.Add( mip );
 			}
 
 			ImageFormats.ImageEngineFormatDetails outputFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.DDS_DXT3 );
-
 			outputImage.Save( outputPath, outputFormat, MipHandling.KeepExisting, mipToSave: paths.Count );
 		}
 	}
