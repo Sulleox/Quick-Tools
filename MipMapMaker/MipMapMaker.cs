@@ -31,9 +31,33 @@ namespace MipMapMaker
 			}
 		}
 
-		private void GetFilesInFolder()
-		{
+        private List<string> GetFilesInFolder()
+        {
+            string[] fileNames = Directory.GetFiles(pathBox.Text);
+            List<string> mipmap = new List<string>();
 
-		}
-	}
+            for (int i = 0; i < fileNames.Length; i++)
+            {
+                //NomDuFichier_Mip0
+                if (i != 0)
+                {
+                    if(fileNames[i].Remove(fileNames.Length - 5) != fileNames[i - 1].Remove(fileNames.Length - 5))
+                    {
+                        mipmap.Add(fileNames[i]);
+                    }
+                    else
+                    {
+
+                        mipmap.Clear();
+                        mipmap.Add(fileNames[i]);
+                    }
+                }
+                else
+                {
+                    mipmap.Add(fileNames[i]);
+                }
+            }
+
+        }
+    }
 }
