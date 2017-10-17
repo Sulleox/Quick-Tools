@@ -40,30 +40,61 @@ namespace SpritesheetMaker
         {
             if (spritepathBox.Text != string.Empty && outpoutPathBox.Text != string.Empty)
             {
-                Image[] sprites = GetFilesInFolder();
-                Size spriteSize = GetSpriteSize(sprites);
-                PackSpriteSheet(sprites, spriteSize, GetSpritesheetSize(sprites, spriteSize));
+                GetFilesInFolder();
+                //PackSpriteSheet(sprites, spriteSize, GetSpritesheetSize(sprites, spriteSize));
             }
         }
 
-        private Image[] GetFilesInFolder()
+        private void GetFilesInFolder()
         {
             string[] filesList = Directory.GetFiles(spritepathBox.Text);
+
+            List<List<string>> output = new List<List<string>>();
+            int currentSubList = 0;
+            output.Add(new List<string>());
+            output[0].Add(filesList[0]);
+
             List<Image> sprites = new List<Image>();
 
-            for (int i = 0; i < filesList.Length; i++)
+            for (int i = 1; i < filesList.Length; i++)
             {
-                for (int y = 0; y < allowedExts.Length; y++)
+                for (int j = 0; i < allowedExts.Length; j++)
                 {
-                    if (Path.GetExtension(filesList[i]) == allowedExts[y])
+                    if (Path.GetExtension(filesList[i]) == allowedExts[j])
                     {
-                        sprites.Add(Image.FromFile(filesList[i]));
+                        string original = output[currentSubList][0].Substring(0, output[currentSubList][0].LastIndexOf('_'));
+                        string input = filesList[i].Substring(0, filesList[i].LastIndexOf('_'));
+
+                        if (original == input)
+                        {
+                            output[currentSubList].Add(filesList[i]);
+                        }
+                        else
+                        {
+                            currentSubList++;
+                            output.Add(new List<string>());
+                            output[currentSubList].Add(filesList[i]);
+                        }
                     }
                 }
             }
 
-            return sprites.ToArray();
+            for (int k = 0; k < output.Count; k++)
+            {
+                sprites.Clear();
+
+                for (int l = 0; l < output[k].Count; l++)
+                {
+                    sprites.Add(Image.FromFile(output[k][l]));
+                }
+
+                Size spriteSize = GetSpriteSize(sprites.ToArray());
+                int spriteSheetSize = GetSpritesheetSize(sprites.ToArray(), GetSpriteSize(sprites.ToArray()));
+
+                PackSpriteSheet(sprites.ToArray(), spriteSize, spriteSheetSize);
+            }
         }
+
 
         private Size GetSpriteSize(Image[] graphics)
         {
@@ -106,17 +137,9 @@ namespace SpritesheetMaker
             {
                 for(int j = 0; j <= SpriteSheetSize - spriteSize.Width; j += spriteSize.Width)
                 {
-                    if (currentSprite >= graphics.Length)
-                    {
-                        Pen pen = new Pen(Color.DarkRed, 1);
-                        spriteSheet.DrawRectangle(pen, j, i, spriteSize.Width, spriteSize.Height);
-                    }
-                    else
-                    {
                         spriteSheet.DrawImage(graphics[currentSprite], j,i, graphics[currentSprite].Width, graphics[currentSprite].Height);
                         graphics[currentSprite].Dispose();
                         currentSprite++;
-                    }
                 }
             }
             switch (extensionBox.SelectedIndex)
@@ -144,31 +167,6 @@ namespace SpritesheetMaker
             }
             spriteSheet.Dispose();
             newBitmap.Dispose();
-        }
-
-        private void SpritesheetMaker_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void extensionBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nameBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void spritepathBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
