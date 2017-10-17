@@ -82,7 +82,7 @@ namespace MipMapMaker
 			}
 
 			ImageFormats.ImageEngineFormatDetails outputFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.DDS_DXT3 );
-			outputImage.Save( outputPath, outputFormat, MipHandling.KeepExisting, mipToSave: paths.Count );
+			outputImage.Save( outputPath, outputFormat, MipHandling.GenerateNew, mipToSave: paths.Count );
 		}
 	}
 }
