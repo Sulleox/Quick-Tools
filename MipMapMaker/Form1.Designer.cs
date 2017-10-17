@@ -28,21 +28,47 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// Form1
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 262);
-			this.Name = "Form1";
-			this.Text = "Form1";
-			this.Load += new System.EventHandler(this.Form1_Load);
-			this.ResumeLayout(false);
+            this.browseButton = new System.Windows.Forms.Button();
+            this.pathBox = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.SuspendLayout();
+            // 
+            // browseButton
+            // 
+            this.browseButton.Location = new System.Drawing.Point(13, 13);
+            this.browseButton.Name = "browseButton";
+            this.browseButton.Size = new System.Drawing.Size(75, 23);
+            this.browseButton.TabIndex = 0;
+            this.browseButton.Text = "Browse";
+            this.browseButton.UseVisualStyleBackColor = true;
+            this.browseButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pathBox
+            // 
+            this.pathBox.Location = new System.Drawing.Point(13, 43);
+            this.pathBox.Name = "pathBox";
+            this.pathBox.Size = new System.Drawing.Size(259, 20);
+            this.pathBox.TabIndex = 1;
+            // 
+            // MipMapMaker
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.pathBox);
+            this.Controls.Add(this.browseButton);
+            this.Name = "MipMapMaker";
+            this.Text = "MipMap Maker";
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 
-		#endregion
-	}
+        #endregion
+
+        private System.Windows.Forms.Button browseButton;
+        private System.Windows.Forms.TextBox pathBox;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+    }
 }
 

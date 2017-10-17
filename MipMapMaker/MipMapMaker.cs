@@ -17,11 +17,14 @@ namespace MipMapMaker
 			InitializeComponent();
 		}
 
-		private void Form1_Load( object sender, EventArgs e )
-		{
-
-		}
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                pathBox.Text = folderBrowserDialog.SelectedPath;
+                GetFilesInFolder();
+            }
+        }
 
 
 	}
