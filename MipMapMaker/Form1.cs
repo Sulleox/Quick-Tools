@@ -12,12 +12,12 @@ using System.IO;
 
 namespace MipMapMaker
 {
-	public partial class Form1 : Form
+	public partial class MipMakerform : Form
 	{
 
 		private readonly string[] allowedExts = { ".png", ".jpg", ".tga" };
 
-		public Form1()
+		public MipMakerform()
 		{
 			InitializeComponent();
 		}
@@ -68,21 +68,23 @@ namespace MipMapMaker
 
 		private void SaveDDS( List<string> paths, string outputPath )
 		{
-			Bitmap bitmap = new Bitmap( 2048, 1024 );
-			bitmap.Save( outputPath );
-			bitmap.Dispose();
+			ImageEngineImage outputImage = new ImageEngineImage( paths[0] );
 
-			ImageEngineImage outputImage = new ImageEngineImage( outputPath );
-
-			for ( int i = 0 ; i < paths.Count ; i++ )
+			for ( int i = 1 ; i < paths.Count ; i++ )
 			{
 				ImageEngineImage mipImage = new ImageEngineImage( paths[i] );
 				MipMap mip = new MipMap( mipImage.OriginalData, mipImage.Width, mipImage.Height, mipImage.FormatDetails );
 				outputImage.MipMaps.Add( mip );
 			}
 
-			ImageFormats.ImageEngineFormatDetails outputFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.DDS_DXT3 );
-			outputImage.Save( outputPath, outputFormat, MipHandling.KeepExisting, mipToSave: paths.Count );
+			ImageFormats.ImageEngineFormatDetails outputFormat = new ImageFormats.ImageEngineFormatDetails( ImageEngineFormat.DDS_DXT5 );
+
+			byte[] data = outputImage.Save( outputFormat, MipHandling.Default, mipToSave: paths.Count );
+
+			using ( var file = File.Create( outputPath ) )
+			{
+				file.Write( data, 0, data.Length );
+			}
 		}
 	}
 }
