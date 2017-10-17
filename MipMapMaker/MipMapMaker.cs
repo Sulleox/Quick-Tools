@@ -30,9 +30,9 @@ namespace MipMapMaker
 			}
 		}
 
-        private void GetFilesInFolder()
-        {
-            
-        }
-    }
+		private void GetFilesInFolder()
+		{
+
+		}
+	}
 }
