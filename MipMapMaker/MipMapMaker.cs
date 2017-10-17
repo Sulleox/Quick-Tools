@@ -30,7 +30,7 @@ namespace MipMapMaker
 			}
 		}
 
-        private void GetFilesInFolder()
+        private List<Image[]> GetFilesInFolder()
         {
             string[] filesList = Directory.GetFiles(pathBox.Text);
             List<Image[]> mipmaps = new List<Image[]>();
