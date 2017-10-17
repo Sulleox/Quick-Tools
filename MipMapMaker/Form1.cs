@@ -7,29 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 using CSharpImageLibrary;
+using System.IO;
 
 namespace MipMapMaker
 {
-	public partial class MipMapMakerForm : Form
-	{
+    public partial class Form1 : Form
+    {
 
-		private readonly string[] allowedExts = { ".png", ".jpg", ".tga" };
+        private readonly string[] allowedExts = { ".png", ".jpg", ".tga" };
 
-		public MipMapMakerForm()
-		{
-			InitializeComponent();
-		}
+        public Form1()
+        {
+            InitializeComponent();
+        }
 
-		private void button1_Click( object sender, EventArgs e )
-		{
-			if ( folderBrowserDialog.ShowDialog() == DialogResult.OK )
-			{
-				pathBox.Text = folderBrowserDialog.SelectedPath;
-				GetFilesInFolder();
-			}
-		}
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pathBox.Text = folderBrowserDialog1.SelectedPath;
+                GetFilesInFolder();
+            }
+        }
 
         //Nomenclature des fichiers : NomDuFichier_Mip0
 
@@ -42,7 +42,7 @@ namespace MipMapMaker
             {
                 if (i != 0)
                 {
-                    if(fileNames[i].Remove(fileNames.Length - 5) == fileNames[i - 1].Remove(fileNames.Length - 5))
+                    if (fileNames[i].Remove(fileNames.Length - 5) == fileNames[i - 1].Remove(fileNames.Length - 5))
                     {
                         mipmap.Add(fileNames[i]);
                     }
