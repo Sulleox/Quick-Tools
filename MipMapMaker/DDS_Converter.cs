@@ -9,7 +9,7 @@ namespace MipMapMaker
 {
 	internal static class DDS_Converter
 	{
-		public static void SaveDDS( List<string> paths, string outputPath )
+		internal static void SaveDDS( List<string> paths, string outputPath )
 		{
 			ImageEngineImage outputImage = new ImageEngineImage( outputPath );
 
