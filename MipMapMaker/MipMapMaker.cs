@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MipMapMaker
 {
 	public partial class MipMapMaker : Form
 	{
-		public MipMapMaker()
+
+        private readonly string[] allowedExts = { ".png", ".jpg", ".tga" };
+
+        public MipMapMaker()
 		{
 			InitializeComponent();
 		}
@@ -26,9 +30,12 @@ namespace MipMapMaker
             }
         }
 
-        private void GetFilesInFolder()
+        private List<Image[]> GetFilesInFolder()
         {
-            
+            string[] filesList = Directory.GetFiles(pathBox.Text);
+            List<Image[]> mipmaps = new List<Image[]>();
+
+            return mipmaps;
         }
     }
 }
