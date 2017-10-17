@@ -58,7 +58,7 @@ namespace SpritesheetMaker
 
             for (int i = 1; i < filesList.Length; i++)
             {
-                for (int j = 0; i < allowedExts.Length; j++)
+                for (int j = 0; j < allowedExts.Length; j++)
                 {
                     if (Path.GetExtension(filesList[i]) == allowedExts[j])
                     {
@@ -88,10 +88,12 @@ namespace SpritesheetMaker
                     sprites.Add(Image.FromFile(output[k][l]));
                 }
 
-                Size spriteSize = GetSpriteSize(sprites.ToArray());
-                int spriteSheetSize = GetSpritesheetSize(sprites.ToArray(), GetSpriteSize(sprites.ToArray()));
+                Image[] spriteTable = sprites.ToArray();
+                Size spriteSize = GetSpriteSize(spriteTable);
+                int spriteSheetSize = GetSpritesheetSize(spriteTable, spriteSize);
+                string fileName = Path.GetFileNameWithoutExtension(output[k][0]);
 
-                PackSpriteSheet(sprites.ToArray(), spriteSize, spriteSheetSize);
+                PackSpriteSheet(spriteTable, spriteSize, spriteSheetSize, fileName);
             }
         }
 
@@ -124,7 +126,7 @@ namespace SpritesheetMaker
             return (int)Math.Pow(2, Math.Ceiling(Math.Log(x) / Math.Log(2)));
         }
 
-        private void PackSpriteSheet(Image[] graphics, Size spriteSize, int SpriteSheetSize)
+        private void PackSpriteSheet(Image[] graphics, Size spriteSize, int SpriteSheetSize, string fileName)
         {
             if (overwriteBox.Checked && File.Exists(outpoutPathBox.Text + @"\" + nameBox.Text + "." + extensionBox.Text))
             {
@@ -133,35 +135,64 @@ namespace SpritesheetMaker
             Bitmap newBitmap = new Bitmap(SpriteSheetSize, SpriteSheetSize);
             Graphics spriteSheet = Graphics.FromImage(newBitmap);
             int currentSprite = 0;
-            for(int i = 0; i <= SpriteSheetSize - spriteSize.Height; i += spriteSize.Height)
+            for (int i = 0; i <= SpriteSheetSize - spriteSize.Height && currentSprite < graphics.Length; i += spriteSize.Height)
             {
-                for(int j = 0; j <= SpriteSheetSize - spriteSize.Width; j += spriteSize.Width)
+                for (int j = 0; j <= SpriteSheetSize - spriteSize.Width && currentSprite < graphics.Length; j += spriteSize.Width)
                 {
-                        spriteSheet.DrawImage(graphics[currentSprite], j,i, graphics[currentSprite].Width, graphics[currentSprite].Height);
-                        graphics[currentSprite].Dispose();
-                        currentSprite++;
+                    spriteSheet.DrawImage(graphics[currentSprite], j, i, spriteSize.Width, spriteSize.Height);
+                    graphics[currentSprite].Dispose();
+                    currentSprite++;
                 }
             }
+
             switch (extensionBox.SelectedIndex)
             {
                 case 0:
                     {
-                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
-                        break;
+                        if(oneFolderCheck.Checked)
+                        {
+                            newBitmap.Save(outpoutPathBox.Text + @"\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                        }
+                        else
+                        {
+                            newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                        }
                     }
+                    break;
                 case 1:
                     {
-                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
-                        break;
+                        if (oneFolderCheck.Checked)
+                        {
+                            newBitmap.Save(outpoutPathBox.Text + @"\" + fileName + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
+                        }
+                        else
+                        {
+                            newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
+                        }
                     }
+                    break;
                 case 2:
                     {
-                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        if (oneFolderCheck.Checked)
+                        {
+                            newBitmap.Save(outpoutPathBox.Text + @"\" + fileName + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        }
+                        else
+                        {
+                            newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        }
                     }
                     break;
                 default:
                     {
-                        newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                        if (oneFolderCheck.Checked)
+                        {
+                            newBitmap.Save(outpoutPathBox.Text + @"\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                        }
+                        else
+                        {
+                            newBitmap.Save(outpoutPathBox.Text + @"\" + nameBox.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                        }
                     }
                     break;
             }

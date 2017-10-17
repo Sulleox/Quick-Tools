@@ -41,6 +41,7 @@
             this.createButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.oneFolderCheck = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // BrowsingButton
@@ -59,7 +60,6 @@
             this.spritepathBox.Name = "spritepathBox";
             this.spritepathBox.Size = new System.Drawing.Size(201, 20);
             this.spritepathBox.TabIndex = 1;
-            this.spritepathBox.TextChanged += new System.EventHandler(this.spritepathBox_TextChanged);
             // 
             // extensionBox
             // 
@@ -73,7 +73,6 @@
             this.extensionBox.Size = new System.Drawing.Size(60, 21);
             this.extensionBox.TabIndex = 2;
             this.extensionBox.Text = "png";
-            this.extensionBox.SelectedIndexChanged += new System.EventHandler(this.extensionBox_SelectedIndexChanged);
             // 
             // nameBox
             // 
@@ -82,7 +81,6 @@
             this.nameBox.Size = new System.Drawing.Size(135, 20);
             this.nameBox.TabIndex = 3;
             this.nameBox.Text = "SpriteSheetName";
-            this.nameBox.TextChanged += new System.EventHandler(this.nameBox_TextChanged);
             // 
             // overwriteBox
             // 
@@ -129,7 +127,6 @@
             this.label1.Size = new System.Drawing.Size(104, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "Select Sprites Folder";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -140,10 +137,21 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Select Outpout Folder";
             // 
+            // oneFolderCheck
+            // 
+            this.oneFolderCheck.AutoSize = true;
+            this.oneFolderCheck.Location = new System.Drawing.Point(12, 191);
+            this.oneFolderCheck.Name = "oneFolderCheck";
+            this.oneFolderCheck.Size = new System.Drawing.Size(78, 17);
+            this.oneFolderCheck.TabIndex = 10;
+            this.oneFolderCheck.Text = "One Folder";
+            this.oneFolderCheck.UseVisualStyleBackColor = true;
+            // 
             // SpritesheetMaker
             // 
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(223, 226);
+            this.Controls.Add(this.oneFolderCheck);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.createButton);
@@ -157,7 +165,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SpritesheetMaker";
             this.Text = "SpriteSheet Maker";
-            this.Load += new System.EventHandler(this.SpritesheetMaker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,6 +187,7 @@
         private System.Windows.Forms.Button createButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox oneFolderCheck;
     }
 }
 
