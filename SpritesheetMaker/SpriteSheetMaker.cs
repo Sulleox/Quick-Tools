@@ -102,9 +102,9 @@ namespace SpritesheetMaker
             Bitmap newBitmap = new Bitmap(SpriteSheetSize, SpriteSheetSize);
             Graphics spriteSheet = Graphics.FromImage(newBitmap);
             int currentSprite = 0;
-            for(int i = 0; i < SpriteSheetSize - spriteSize.Height; i += spriteSize.Height)
+            for(int i = 0; i <= SpriteSheetSize - spriteSize.Height; i += spriteSize.Height)
             {
-                for(int j = 0; j < SpriteSheetSize - spriteSize.Width; j += spriteSize.Width)
+                for(int j = 0; j <= SpriteSheetSize - spriteSize.Width; j += spriteSize.Width)
                 {
                     if (currentSprite >= graphics.Length)
                     {
