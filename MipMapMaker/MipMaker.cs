@@ -8,11 +8,11 @@ using System.IO;
 
 namespace MipMapMaker
 {
-	public partial class MipMakerForm : Form
+	public partial class MipMaker : Form
 	{
 		private readonly string[] allowedExts = { ".png", ".jpg", ".tga" };
 
-		public MipMakerForm()
+		public MipMaker()
 		{
 			InitializeComponent();
 		}

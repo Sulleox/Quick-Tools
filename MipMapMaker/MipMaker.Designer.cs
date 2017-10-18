@@ -1,6 +1,6 @@
 ﻿namespace MipMapMaker
 {
-	partial class MipMakerForm
+	partial class MipMaker
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -36,42 +36,42 @@
 			// 
 			// browseButton
 			// 
-			this.browseButton.Location = new System.Drawing.Point(12, 12);
+			this.browseButton.Location = new System.Drawing.Point( 12, 12 );
 			this.browseButton.Name = "browseButton";
-			this.browseButton.Size = new System.Drawing.Size(75, 23);
+			this.browseButton.Size = new System.Drawing.Size( 75, 23 );
 			this.browseButton.TabIndex = 0;
 			this.browseButton.Text = "Browse...";
 			this.browseButton.UseVisualStyleBackColor = true;
-			this.browseButton.Click += new System.EventHandler(this.button1_Click);
+			this.browseButton.Click += new System.EventHandler( this.button1_Click );
 			// 
 			// pathBox
 			// 
-			this.pathBox.Location = new System.Drawing.Point(11, 41);
+			this.pathBox.Location = new System.Drawing.Point( 11, 41 );
 			this.pathBox.Name = "pathBox";
-			this.pathBox.Size = new System.Drawing.Size(208, 20);
+			this.pathBox.Size = new System.Drawing.Size( 208, 20 );
 			this.pathBox.TabIndex = 1;
 			// 
 			// confirmButton
 			// 
-			this.confirmButton.Location = new System.Drawing.Point(144, 67);
+			this.confirmButton.Location = new System.Drawing.Point( 144, 67 );
 			this.confirmButton.Name = "confirmButton";
-			this.confirmButton.Size = new System.Drawing.Size(75, 23);
+			this.confirmButton.Size = new System.Drawing.Size( 75, 23 );
 			this.confirmButton.TabIndex = 2;
 			this.confirmButton.Text = "Convert";
 			this.confirmButton.UseVisualStyleBackColor = true;
-			this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
+			this.confirmButton.Click += new System.EventHandler( this.confirmButton_Click );
 			// 
 			// MipMakerForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(235, 106);
-			this.Controls.Add(this.confirmButton);
-			this.Controls.Add(this.pathBox);
-			this.Controls.Add(this.browseButton);
+			this.ClientSize = new System.Drawing.Size( 235, 106 );
+			this.Controls.Add( this.confirmButton );
+			this.Controls.Add( this.pathBox );
+			this.Controls.Add( this.browseButton );
 			this.Name = "MipMakerForm";
 			this.Text = "MipMap Packer";
-			this.ResumeLayout(false);
+			this.ResumeLayout( false );
 			this.PerformLayout();
 
 		}
