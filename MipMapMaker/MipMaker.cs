@@ -10,7 +10,7 @@ namespace MipMapMaker
 {
 	public partial class MipMaker : Form
 	{
-		private readonly string[] allowedExts = { ".png", ".jpg", ".tga" };
+		private readonly string[] allowedExts = { ".png", ".jpg", ".tga", ".bmp" };
 
 		public MipMaker()
 		{
